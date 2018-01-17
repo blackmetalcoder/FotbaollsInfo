@@ -1,0 +1,191 @@
+﻿<Page
+    x:Class="FotbaollsInfo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FotbaollsInfo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:q ="using:QKit"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <CollectionViewSource x:Name="cvsLigor" IsSourceGrouped="True" />
+        <CollectionViewSource x:Name="cvsResult" />
+        <CollectionViewSource x:Name="cvsHometeam"></CollectionViewSource>
+        <CollectionViewSource x:Name="cvsAwayteam"></CollectionViewSource>
+        </Page.Resources>
+    <Page.BottomAppBar >
+        <CommandBar x:Name="BarPlay" Background="{x:Null}">
+            <AppBarButton x:Name="Om" Label="Send mail" Icon="Mail" Click="Om_Click"  />
+            <AppBarButton Content="Date" Label="Choose date" Icon="Calendar">
+                <Button.Flyout>
+                    <Flyout>
+                        <Grid>
+                            <TextBlock Text="Choose match new date" />
+                            <DatePicker x:Name="cboDatum" DateChanged="DatePicker_DateChanged"  />
+                        </Grid>
+                    </Flyout>
+                </Button.Flyout>
+            </AppBarButton>
+        </CommandBar>
+
+    </Page.BottomAppBar>
+    <Grid>
+        <ProgressRing x:Name="pring1" Grid.Row="1" Width="75" Height="75" Background="{x:Null}" Foreground="#FFF80B4C"/>
+        <Pivot Title="SOCCER Results">
+            <PivotItem Header="Live results" RenderTransformOrigin="0.5,0.5" Margin="18.912,-0.802,19.088,-0.166" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                <PivotItem.RenderTransform>
+                    <CompositeTransform Rotation="-0.431"/>
+                </PivotItem.RenderTransform>
+                <Grid Grid.Row="1">
+                    <q:GenericJumpList x:Name="jumplist" >
+                        <ListView
+            x:Name="itemListLive"
+            AutomationProperties.AutomationId="ItemsListView"
+            AutomationProperties.Name="Items"
+            TabIndex="1"
+            Grid.Row="1"
+            Margin="0,4,0,0.301"
+            Padding="10,0,0,60"
+            ItemsSource="{Binding Source={StaticResource cvsResult}}"
+            IsSwipeEnabled="False" Width="358" HorizontalAlignment="Left" Tapped="itemListLive_Tapped"
+                            >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="250" />
+                                                <ColumnDefinition Width="25" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding Time}" Grid.Row="0" Grid.ColumnSpan="1" TextWrapping="NoWrap" MaxHeight="20" FontSize="10" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding Date}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="NoWrap" MaxHeight="20" FontSize="10" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding HomeTeam}" Grid.Row="1" Grid.Column="0" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap" MaxHeight="40"/>
+                                            <TextBlock Text="{Binding AwayTeam}" Grid.Row="2" Grid.Column="0" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap" MaxHeight="40"/>
+                                            <TextBlock Text="{Binding HomeGoals}" Grid.Row="1" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap" MaxHeight="40"/>
+                                            <TextBlock Text="{Binding AwayGoals}" Grid.Row="2" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap" MaxHeight="40"/>
+                                            <Button x:Name="NormalFlyoutBtn" Grid.Row="3" Grid.ColumnSpan="1" Content="Info" Width="10" Height="Auto" Click="NormalFlyoutBtn_Click" >
+                                                <Button.Flyout >
+                                                    <Flyout x:Name="fInfo" Placement="Full" >
+                                                        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+                                                            <Pivot Title="About">
+                                                                <PivotItem Header="Game info">
+                                                                    <Grid>
+                                                                        <StackPanel>
+                                                                            <TextBlock Text="Homegoals:" FontFamily="Verdana" FontSize="20" FontWeight="Bold"></TextBlock>
+                                                                            <TextBlock Text="{Binding HomeGoalDetails}" FontSize="16" TextWrapping="Wrap"/>
+                                                                            <TextBlock Text="Hometeam yellow cards:" FontFamily="Verdana" FontSize="20" FontWeight="Bold"></TextBlock>
+                                                                            <TextBlock Text="{Binding HomeTeamYellowCardDetails}" FontSize="16" TextWrapping="Wrap"/>
+                                                                            <TextBlock Text="Hometeam red cards:" FontFamily="Verdana" FontSize="20" FontWeight="Bold"></TextBlock>
+                                                                            <TextBlock Text="{Binding HomeTeamRedCardDetails}" FontSize="16" TextWrapping="Wrap"/>
+
+                                                                            <TextBlock Text="Awaygoals:" FontFamily="Verdana" FontSize="20" FontWeight="Bold"></TextBlock>
+                                                                            <TextBlock Text="{Binding AwayGoalDetails}" FontSize="16" TextWrapping="Wrap"/>
+                                                                            <TextBlock Text="Awayteam yellow cards:" FontFamily="Verdana" FontSize="20" FontWeight="Bold"></TextBlock>
+                                                                            <TextBlock Text="{Binding AwayTeamYellowCardDetails}" FontSize="16" TextWrapping="Wrap"/>
+                                                                            <TextBlock Text="Awayteam red cards:" FontFamily="Verdana" FontSize="20" FontWeight="Bold"></TextBlock>
+                                                                            <TextBlock Text="{Binding AwayTeamRedCardDetails}" FontSize="16" TextWrapping="Wrap"/>
+
+                                                                        </StackPanel>
+                                                                    </Grid>
+                                                                </PivotItem>
+                                                                <PivotItem Header="Formation" Background="#FF0D993A">
+                                                                    <StackPanel Background="#FF0EB050">
+                                                                        <TextBlock Text="Home team formation" FontFamily="Verdana" FontSize="20" FontWeight="Bold" Margin="10,0,0,0"  ></TextBlock>
+                                                                        <TextBlock Text="Goalkeeper" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Margin="5,0,0,0"></TextBlock>
+                                                                        <TextBlock Text="{Binding HomeLineupGoalkeeper}" FontSize="16" TextWrapping="Wrap" FontWeight="Bold" Margin="5,0,0,0" Foreground="Black"/>
+                                                                        <TextBlock Text="Defenders" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Margin="5,0,0,0"></TextBlock>
+                                                                        <TextBlock Text="{Binding HomeLineupDefense}" FontSize="16" TextWrapping="Wrap" FontWeight="Bold" Margin="5,0,0,0" Foreground="Black"/>
+                                                                        <TextBlock Text="Midfield" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Margin="5,0,0,0"></TextBlock>
+                                                                        <TextBlock Text="{Binding HomeLineupMidfield}" FontSize="16" TextWrapping="Wrap" FontWeight="Bold" Margin="5,0,0,0" Foreground="Black"/>
+                                                                        <TextBlock Text="Forwards" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Margin="5,0,0,0" ></TextBlock>
+                                                                        <TextBlock Text="{Binding HomeLineupForward}" FontSize="16" TextWrapping="Wrap" FontWeight="Bold" Margin="5,0,0,0" Foreground="Black"/>
+                                                                        <TextBlock Text="Substitutes" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Margin="5,0,0,0"></TextBlock>
+                                                                        <TextBlock Text="{Binding HomeLineupSubstitutes}" FontSize="16" TextWrapping="Wrap" FontWeight="Bold" Margin="5,0,0,0" Foreground="Black"/>
+                                                                        <TextBlock Text="Away team formation"  FontFamily="Verdana" FontSize="20" FontWeight="Bold" Margin="10,0,0,0" ></TextBlock>
+                                                                        <TextBlock Text="Goalkeeper" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Margin="5,0,0,0"></TextBlock>
+                                                                        <TextBlock Text="{Binding AwayLineupGoalkeeper}" FontSize="16" TextWrapping="Wrap" FontWeight="Bold" Margin="5,0,0,0" Foreground="Black"/>
+                                                                        <TextBlock Text="Defenders" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Margin="5,0,0,0"></TextBlock>
+                                                                        <TextBlock Text="{Binding AwayLineupDefense}" FontSize="16" TextWrapping="Wrap" FontWeight="Bold" Margin="5,0,0,0" Foreground="Black"/>
+                                                                        <TextBlock Text="Midfield" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Margin="5,0,0,0"></TextBlock>
+                                                                        <TextBlock Text="{Binding AwayLineupMidfield}" FontSize="16" TextWrapping="Wrap" FontWeight="Bold" Margin="5,0,0,0" Foreground="Black"/>
+                                                                        <TextBlock Text="Forwards" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Margin="5,0,0,0"></TextBlock>
+                                                                        <TextBlock Text="{Binding AwayLineupForward}" FontSize="16" TextWrapping="Wrap" FontWeight="Bold" Margin="5,0,0,0" Foreground="Black"/>
+                                                                        <TextBlock Text="Substitutes" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Margin="5,0,0,0"></TextBlock>
+                                                                        <TextBlock Text="{Binding AwayLineupSubstitutes}"  FontSize="16" TextWrapping="Wrap" FontWeight="Bold" Margin="5,0,0,0" Foreground="Black"/>
+                                                                    </StackPanel>
+                                                                </PivotItem>
+                                                                <PivotItem x:Name="xHometeam" Header="{Binding Name}" DataContext="{Binding Source={StaticResource cvsHometeam}}">
+                                                                    <StackPanel>
+                                                                        <TextBlock Text="{Binding Country_}" Style="{StaticResource TitleTextBlockStyle}"></TextBlock>
+                                                                        <TextBlock Text="{Binding Stadium_ }" Style="{StaticResource TitleTextBlockStyle}"></TextBlock>
+                                                                        <HyperlinkButton Content="Go to homepage" NavigateUri="{Binding HomePageURL_}" ></HyperlinkButton>
+                                                                        <WebView Source="{Binding WIKILink_}" Width="350" Height="475"></WebView>
+                                                                    </StackPanel>
+                                                                </PivotItem>
+                                                                <PivotItem x:Name="xAwayteam" Header="{Binding Name}" DataContext="{Binding Source={StaticResource cvsAwayteam}}">
+                                                                    <StackPanel>
+                                                                        <TextBlock Text="{Binding Country_}" Style="{StaticResource TitleTextBlockStyle}"></TextBlock>
+                                                                        <TextBlock Text="{Binding Stadium_ }" Style="{StaticResource TitleTextBlockStyle}"></TextBlock>
+                                                                        <HyperlinkButton Content="Go to homepage" NavigateUri="{Binding HomePageURL_}" ></HyperlinkButton>
+                                                                        <WebView Source="{Binding WIKILink_}" Width="350" Height="475"></WebView>
+                                                                    </StackPanel>
+                                                                </PivotItem> 
+                                                            </Pivot>
+                                                        </Grid>
+
+                                                        <Flyout.FlyoutPresenterStyle>
+                                                            <Style TargetType="FlyoutPresenter">
+                                                                <Setter Property="ScrollViewer.ZoomMode" Value="Enabled"/>
+                                                                <Setter Property="Background" Value="Black"/>
+                                                                <Setter Property="BorderBrush" Value="Gray"/>
+                                                                <Setter Property="BorderThickness" Value="5"/>
+                                                                <Setter Property="MinHeight" Value="300"/>
+                                                                <Setter Property="MinWidth" Value="300"/>
+                                                            </Style>
+                                                        </Flyout.FlyoutPresenterStyle>
+                                                    </Flyout>
+                                                </Button.Flyout>
+                                            </Button>
+                                        </Grid>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </q:GenericJumpList>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Leagues" Margin="10,10,10,12.333">
+                <Grid Grid.Row="1" x:Name="ContentRoot">
+                    <q:GenericJumpList Name="jumplistLigor">
+                        <ListView x:Name="listLiga">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" FontSize="18" Margin="6"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </q:GenericJumpList>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="About">
+                <Grid>
+                    <StackPanel>
+                        <TextBlock Text="I did it!" FontSize="24" Margin="6"/>
+                        <TextBlock Text="The 'Blackmetalcoder' from Hörja" TextWrapping="Wrap" FontSize="36" Margin="6"/>
+                    </StackPanel>
+
+                </Grid>
+            </PivotItem>
+        </Pivot>
+
+    </Grid>
+</Page>

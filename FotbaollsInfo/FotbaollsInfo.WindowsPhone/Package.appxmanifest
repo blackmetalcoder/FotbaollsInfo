@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
+  <Identity Name="43168Blackmetalcoder.SoccerResults" Publisher="CN=D59A0E57-257B-42F9-A954-BCFD624229D7" Version="1.1.0.8" />
+  <mp:PhoneIdentity PhoneProductId="ee937568-541c-4bf4-93c0-0e7ad53ff013" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Properties>
+    <DisplayName>Soccer Results</DisplayName>
+    <PublisherDisplayName>Blackmetalcoder</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.1</OSMinVersion>
+    <OSMaxVersionTested>6.3.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="FotbaollsInfo.WindowsPhone.App">
+      <m3:VisualElements DisplayName="Soccer results" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="Watch live scores from 45 soccer leagues" ForegroundText="light" BackgroundColor="transparent">
+        <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png">
+        </m3:DefaultTile>
+        <m3:SplashScreen Image="Assets\SplashScreen.png" />
+        <m3:InitialRotationPreference>
+          <m3:Rotation Preference="portrait" />
+        </m3:InitialRotationPreference>
+      </m3:VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClientServer" />
+  </Capabilities>
+</Package>

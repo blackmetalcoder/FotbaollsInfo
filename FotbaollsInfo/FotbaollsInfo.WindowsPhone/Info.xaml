@@ -1,0 +1,73 @@
+﻿<Page
+    x:Class="FotbaollsInfo.Info"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FotbaollsInfo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="Abuot the game" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <Pivot Title="Pivot">
+                <PivotItem Header="Game info">
+                    <Grid>
+
+                    </Grid>
+                </PivotItem>
+                <PivotItem Header="Formation" Margin="-2,-10,2,10">
+                    <PivotItem.Background>
+                        <ImageBrush ImageSource="Assets/Fotbollsplan.jpg"/>
+                    </PivotItem.Background>
+                    <StackPanel>
+                        <TextBlock Text="Home team formation" FontFamily="Verdana" FontSize="16" FontWeight="Bold" Foreground="#FF1060EC" ></TextBlock>
+                        <TextBlock Text="Goalkeeper" FontFamily="Verdana" FontSize="16" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding HomeLineupGoalkeeper}" FontSize="16" TextWrapping="Wrap"/>
+                        <TextBlock Text="Defenders" FontFamily="Verdana" FontSize="16" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding HomeLineupDefense}" FontSize="16" TextWrapping="Wrap"/>
+                        <TextBlock Text="Midfield" FontFamily="Verdana" FontSize="16" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding HomeLineupMidfield}" FontSize="16" TextWrapping="Wrap"/>
+                        <TextBlock Text="Forwards" FontFamily="Verdana" FontSize="16" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding HomeLineupForward}" FontSize="16" TextWrapping="Wrap"/>
+                        <TextBlock Text="Substitutes" FontFamily="Verdana" FontSize="16" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding HomeLineupSubstitutes}" FontSize="16" TextWrapping="Wrap"/>
+                        <TextBlock Text="Away team formation"  FontFamily="Verdana" FontSize="20" FontWeight="Bold" Foreground="#FF1060EC"></TextBlock>
+                        <TextBlock Text="Goalkeeper" FontFamily="Verdana" FontSize="16" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding AwayLineupGoalkeeper}" FontSize="16" TextWrapping="Wrap"/>
+                        <TextBlock Text="Defenders" FontFamily="Verdana" FontSize="16" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding AwayLineupDefense}" FontSize="16" TextWrapping="Wrap"/>
+                        <TextBlock Text="Midfield" FontFamily="Verdana" FontSize="16" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding AwayLineupMidfield}" FontSize="16" TextWrapping="Wrap"/>
+                        <TextBlock Text="Forwards" FontFamily="Verdana" FontSize="16" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding AwayLineupForward}" FontSize="16" TextWrapping="Wrap"/>
+                        <TextBlock Text="Substitutes" FontFamily="Verdana" FontSize="16" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding AwayLineupSubstitutes}"  FontSize="16" TextWrapping="Wrap"/>
+                    </StackPanel>
+
+
+                </PivotItem>
+            </Pivot>
+        </Grid>
+
+    </Grid>
+
+</Page>
