@@ -35,5 +35,6 @@ namespace FotbaollsInfo
         public string AwayLineupSubstitutes { get; set; }
         public string HomeGoalDetails { get; set; }
         public string AwayGoalDetails { get; set; }
+        public string referee { get; set; }
     }
 }
